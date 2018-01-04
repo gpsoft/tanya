@@ -15,8 +15,7 @@ public class TanyaApplication {
 		SpringApplication.run(TanyaApplication.class, args);
 	}
 
-	@Autowired
-	public void setAgent(Agent agent) {
+	public TanyaApplication(Agent agent) {
 		this.agent = agent;
 	}
 
