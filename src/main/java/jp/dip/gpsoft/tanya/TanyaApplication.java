@@ -9,11 +9,15 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TanyaApplication {
 
-	@Autowired
 	private Agent agent;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TanyaApplication.class, args);
+	}
+
+	@Autowired
+	public void setAgent(Agent agent) {
+		this.agent = agent;
 	}
 
 	@Bean
