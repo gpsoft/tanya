@@ -10,4 +10,9 @@ public class AppConfig {
 	public IAgent agent() {
 		return new Agent();
 	}
+
+	@Bean
+	public IAgent specialAgent() {
+		return new SpecialAgent();
+	}
 }
