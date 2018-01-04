@@ -1,11 +1,14 @@
 package jp.dip.gpsoft.tanya;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class Agent {
 
+	private String name;
+
+	public Agent(String name) {
+		this.name = name;
+	}
+
 	public void help() {
-		System.out.println("Done!!");
+		System.out.println(name + ": Done!!");
 	}
 }
