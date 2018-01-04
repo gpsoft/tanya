@@ -1,14 +1,8 @@
 package jp.dip.gpsoft.tanya;
 
-public class Agent {
-
-	private String name;
-
-	public Agent(String name) {
-		this.name = name;
-	}
+public class Agent implements IAgent {
 
 	public void help() {
-		System.out.println(name + ": Done!!");
+		System.out.println("Agent Walker: Done!!");
 	}
 }

@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 public class AppConfig {
 
 	@Bean
-	public Agent agent() {
-		return new Agent("Agent Walker");
+	public IAgent agent() {
+		return new Agent();
 	}
 }

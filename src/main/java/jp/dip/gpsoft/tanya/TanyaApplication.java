@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class TanyaApplication {
 
-	private Agent agent;
+	private IAgent agent;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TanyaApplication.class, args);
 	}
 
-	public TanyaApplication(Agent agent) {
+	public TanyaApplication(IAgent agent) {
 		this.agent = agent;
 	}
 
