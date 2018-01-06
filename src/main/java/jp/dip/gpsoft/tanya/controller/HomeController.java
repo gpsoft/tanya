@@ -1,7 +1,10 @@
 package jp.dip.gpsoft.tanya.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,5 +36,16 @@ public class HomeController {
 			return "<p>Hello again</p>";
 		}
 		return "<p>Hello again, " + name + "</p>";
+	}
+	
+	@PostMapping("/post")
+	@ResponseBody
+	public String post(@RequestBody(required=false) MultiValueMap<String, Object> cat) {
+		if ( cat == null ) {
+			return "NG";
+		}
+		System.out.println(cat.getFirst("name"));
+		System.out.println(cat.getFirst("age"));
+		return "OK";
 	}
 }
