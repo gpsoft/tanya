@@ -3,6 +3,7 @@ package jp.dip.gpsoft.tanya.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -23,5 +24,14 @@ public class HomeController {
 	@ResponseBody
 	public String greet(@PathVariable String name) {
 		return "<p>Hello " + name + "</p>";
+	}
+	
+	@RequestMapping("/greet2")
+	@ResponseBody
+	public String greet2(@RequestParam(value="name",defaultValue="") String name) {
+		if ( name.equals("") ) {
+			return "<p>Hello again</p>";
+		}
+		return "<p>Hello again, " + name + "</p>";
 	}
 }
