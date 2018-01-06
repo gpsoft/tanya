@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,9 +41,9 @@ public class ApiController {
 		return cats;
 	}
 
-	@GetMapping("/cats/1")
-	public Cat func3() {
-		return cats.get(0);
+	@GetMapping("/cats/{id:^[0-9]+$}")
+	public Cat func3(@PathVariable Integer id) {
+		return cats.get(id-1);
 	}
 
 	@PutMapping("/cats/1")
