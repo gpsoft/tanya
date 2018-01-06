@@ -3,6 +3,8 @@ package jp.dip.gpsoft.tanya.controller;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,8 +40,13 @@ public class ApiController {
 		return cats;
 	}
 
-	@RequestMapping("/cats/1")
+	@GetMapping("/cats/1")
 	public Cat func3() {
 		return cats.get(0);
+	}
+
+	@PutMapping("/cats/1")
+	public Cat func4() {
+		return new Cat("クーちゃん(PUT)", 12);
 	}
 }
