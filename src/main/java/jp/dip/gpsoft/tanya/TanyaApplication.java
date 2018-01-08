@@ -2,15 +2,24 @@ package jp.dip.gpsoft.tanya;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.env.Environment;
 
 @SpringBootApplication
 public class TanyaApplication {
 
 	private IAgent agent;
+
+	@Value("${logging.level.root}")
+	private String logLevel;
+
+	@Autowired
+	Environment env;
 
 	public static void main(String[] args) {
 		SpringApplication.run(TanyaApplication.class, args);
@@ -30,9 +39,8 @@ public class TanyaApplication {
 	private void test() {
 		System.out.println("Hello, world!");
 		Logger logger = LoggerFactory.getLogger(TanyaApplication.class);
-		logger.warn("This is WARN level log");
-		logger.info("This is INFO level log");
-		logger.debug("This is DEBUG level log");
+		logger.info("Log level is " + logLevel);
+		logger.info("Log level(from env) is " + env.getProperty("logging.level.root"));
 
 		agent.help();
 	}
