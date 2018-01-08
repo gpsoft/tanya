@@ -1,5 +1,7 @@
 package jp.dip.gpsoft.tanya.controller;
 
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
+	@Autowired
+	private Logger logger;
+
 	@RequestMapping("/home")
 	@ResponseBody
 	public String home() {
+		logger.info("/home");
 		return "<h2>Home</h2><p>Welcome!!</p>";
 	}
 

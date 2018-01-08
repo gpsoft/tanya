@@ -1,5 +1,7 @@
 package jp.dip.gpsoft.tanya;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +29,10 @@ public class TanyaApplication {
 
 	private void test() {
 		System.out.println("Hello, world!");
+		Logger logger = LoggerFactory.getLogger(TanyaApplication.class);
+		logger.warn("This is WARN level log");
+		logger.info("This is INFO level log");
+		logger.debug("This is DEBUG level log");
 
 		agent.help();
 	}
