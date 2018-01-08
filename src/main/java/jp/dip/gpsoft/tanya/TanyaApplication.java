@@ -39,8 +39,9 @@ public class TanyaApplication {
 	private void test() {
 		System.out.println("Hello, world!");
 		Logger logger = LoggerFactory.getLogger(TanyaApplication.class);
-		logger.info("Log level is " + logLevel);
-		logger.info("Log level(from env) is " + env.getProperty("logging.level.root"));
+		logger.warn("Log level is " + logLevel);
+		logger.warn("Active profiles are "
+				+ String.join(",", env.getActiveProfiles()));
 
 		agent.help();
 	}
