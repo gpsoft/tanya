@@ -38,7 +38,7 @@ public class HomeController {
 				new Cat("クーちゃん", 12),
 				new Cat("クロコ", 6),
 				new Cat("ターちゃん", 9)));
-		return "sample/hoge";
+		return "home";
 	}
 
 	@RequestMapping("/")

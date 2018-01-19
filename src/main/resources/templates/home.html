@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" href="../static/css/fa-svg-with-js.css"
+	th:href="@{/css/fa-svg-with-js.css}">
+
+<title>トップページ</title>
+
+<style th:inline="css">
+body {
+	padding-top: 80px;
+}
+.jumbotron {
+	/*[+
+	background: url([(@{/img/cat.jpg})]) no-repeat center/cover;
+	+]*/
+	/*[- */
+	background: url(../static/img/cat.jpg) no-repeat center/cover;
+	/* -]*/
+}
+</style>
+</head>
+<body>
+
+	<header>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#" class="navbar-brand" th:text="#{app.brand}">ブランド名</a>
+					<button class="navbar-toggle" type="button"
+							data-toggle="collapse" data-target="#navbar-main">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar-main">
+					<ul class="nav navbar-nav">
+						<li><a href="#" th:text="#{app.item1}">item1</a></li>
+						<li><a href="#" th:text="#{app.item2}">item2</a></li>
+						<li><a href="#" th:text="#{app.item3}">item3</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container">
+
+		<div class="jumbotron">
+			<div class="container">
+				<h1 th:text="#{app.welcome}">Welcome!</h1>
+				<p><a id="modalGreetingBtn" class="btn btn-primary btn-lg"
+						href="#" role="button" th:text="#{app.greeting-btn}">Greeting</a></p>
+			</div>
+		</div>
+
+		<div class="page-header">
+			<h1 th:text="#{app.about}">Heading1</h1>
+		</div>
+		<div class="well">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+		</div>
+		<div>
+			<i class="far fa-arrow-alt-circle-down"></i>
+			<i class="far fa-bell"></i>
+			<i class="far fa-bookmark"></i>
+			<i class="far fa-building"></i>
+			<i class="far fa-caret-square-down"></i>
+			<i class="far fa-check-circle"></i>
+			<i class="far fa-check-square"></i>
+			<i class="far fa-circle"></i>
+			<i class="far fa-clock"></i>
+			<i class="far fa-clone"></i>
+			<i class="far fa-comment"></i>
+			<i class="far fa-comment-alt"></i>
+			<i class="far fa-copy"></i>
+			<i class="far fa-dot-circle"></i>
+			<i class="far fa-edit"></i>
+			<i class="far fa-envelope"></i>
+			<i class="far fa-envelope-open"></i>
+			<i class="far fa-file"></i>
+			<i class="far fa-file-alt"></i>
+			<i class="far fa-folder"></i>
+			<i class="far fa-folder-open"></i>
+			<i class="far fa-futbol"></i>
+			<i class="far fa-gem"></i>
+			<i class="far fa-hand-paper"></i>
+			<i class="far fa-hand-peace"></i>
+			<i class="far fa-hand-point-down"></i>
+			<i class="far fa-hand-pointer"></i>
+			<i class="far fa-hand-rock"></i>
+			<i class="far fa-hand-scissors"></i>
+			<i class="far fa-handshake"></i>
+			<i class="far fa-heart"></i>
+			<i class="far fa-hourglass"></i>
+			<i class="far fa-moon"></i>
+			<i class="far fa-question-circle"></i>
+			<i class="far fa-smile"></i>
+			<i class="far fa-square"></i>
+			<i class="far fa-star"></i>
+			<i class="far fa-stop-circle"></i>
+			<i class="far fa-sun"></i>
+			<i class="far fa-thumbs-down"></i>
+			<i class="far fa-thumbs-up"></i>
+			<i class="far fa-times-circle"></i>
+			<i class="far fa-trash-alt"></i>
+			<i class="far fa-user"></i>
+			<i class="far fa-window-close"></i>
+			<i class="fa fa-paw"></i>
+		</div>
+	</div>
+
+	<div id="modalGreeting" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title" th:text="#{app.greeting-title}">Greeting</h4>
+				</div>
+				<div class="modal-body">
+					<p th:text="#{app.greeting1}">Sentence1</p>
+					<p><span th:text="#{app.greeting2}">Sentence2</span> <i th:classappend="text-danger" class="fa fa-paw"></i></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{btn.cancel}">キャンセル</button>
+					<button type="button" class="btn btn-primary" th:text="#{btn.save}">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="../static/js/fontawesome-all.min.js" th:src="@{/js/fontawesome-all.min.js}"></script>
+	<script>
+$(function(){
+	$('#modalGreeting').modal({
+		backdrop: 'static', // static: not close on click background.
+		keyboard: false,    // false: not close with Esc key.
+		show: false,        // false: don't show dialog on initialization.
+	});
+	$('#modalGreetingBtn').on('click', function(){
+		$('#modalGreeting').modal('show');
+	});
+});
+	</script>
+
+</body>
+</html>
