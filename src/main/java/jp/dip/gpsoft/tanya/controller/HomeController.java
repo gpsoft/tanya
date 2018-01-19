@@ -1,11 +1,14 @@
 package jp.dip.gpsoft.tanya.controller;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import jp.dip.gpsoft.tanya.model.Cat;
 
 @Controller
 public class HomeController {
@@ -24,8 +29,10 @@ public class HomeController {
 	private MessageSource msgSource;
 
 	@RequestMapping("/home")
-	public String home(Locale locale) {
+	public String home(Locale locale, Model model) {
 		logger.info("/home");
+		model.addAttribute("now", LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
+		model.addAttribute("cat", new Cat("ターちゃん", 9));
 		return "sample/hoge";
 	}
 

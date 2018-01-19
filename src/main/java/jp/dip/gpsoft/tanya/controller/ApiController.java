@@ -9,19 +9,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jp.dip.gpsoft.tanya.model.Cat;
+
 @RestController
 @RequestMapping("/api")
 public class ApiController {
-
-	class Cat {
-		public String name;
-		public Integer age;
-
-		public Cat(String name, Integer age) {
-			this.name = name;
-			this.age = age;
-		}
-	}
 
 	private List<Cat> cats;
 

@@ -15,6 +15,12 @@
 <p th:if="${param.hungry.toString()}">I'm hungry.</p>
 <p th:unless="${param.hungry.toString()}">I'm sleepy.</p>
 
+<p th:text="${now}">12:34</p>
+<p th:text="${cat.name}">Cat's name comes here</p>
+<div th:object="${cat}">
+	<p th:text="*{name}">name</p>
+	<p th:text="*{age}">age</p>
+</div>
 
 </body>
 </html>
