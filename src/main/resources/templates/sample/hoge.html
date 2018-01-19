@@ -11,5 +11,10 @@
 <p th:text="'<b>abc</b>'">dummy text fuga</p>
 <p th:utext="'<b>abc</b>'">dummy text piyo</p>
 
+<p th:text="${param.hungry.class}"></p>
+<p th:if="${param.hungry.toString()}">I'm hungry.</p>
+<p th:unless="${param.hungry.toString()}">I'm sleepy.</p>
+
+
 </body>
 </html>
