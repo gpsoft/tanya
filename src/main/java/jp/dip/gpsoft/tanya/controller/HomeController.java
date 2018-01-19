@@ -2,6 +2,7 @@ package jp.dip.gpsoft.tanya.controller;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -33,6 +34,10 @@ public class HomeController {
 		logger.info("/home");
 		model.addAttribute("now", LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
 		model.addAttribute("cat", new Cat("ターちゃん", 9));
+		model.addAttribute("cats", Arrays.asList(
+				new Cat("クーちゃん", 12),
+				new Cat("クロコ", 6),
+				new Cat("ターちゃん", 9)));
 		return "sample/hoge";
 	}
 

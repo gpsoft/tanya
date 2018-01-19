@@ -7,6 +7,18 @@
 </head>
 <body>
 
+<ul>
+	<li th:each="c,stat: ${cats}">
+		<span th:text="${stat.index+1}">1</span>:
+		<span th:text="${c.name}">hoge</span>
+		(<span th:text="${c.age}">1</span>)
+	</li>
+	<!--/* -->
+	<li>2:fuga(2)</li>
+	<li>3:piyo(3)</li>
+	<!-- */-->
+</ul>
+
 <p th:text="'abc'">dummy text hoge</p>
 <p th:text="'<b>abc</b>'">dummy text fuga</p>
 <p th:utext="'<b>abc</b>'">dummy text piyo</p>
