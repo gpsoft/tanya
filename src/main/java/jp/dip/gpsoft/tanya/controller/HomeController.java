@@ -24,11 +24,9 @@ public class HomeController {
 	private MessageSource msgSource;
 
 	@RequestMapping("/home")
-	@ResponseBody
 	public String home(Locale locale) {
 		logger.info("/home");
-		String msg = msgSource.getMessage("msg.introduction", null, locale);
-		return "<h2>Home</h2><p>" + msg + "</p>";
+		return "sample/hoge";
 	}
 
 	@RequestMapping("/")
