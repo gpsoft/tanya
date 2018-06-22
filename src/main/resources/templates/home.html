@@ -25,6 +25,14 @@ body {
 	background: url(../static/img/cat.jpg) no-repeat center/cover;
 	/* -]*/
 }
+.jumbotron h1 {
+	color: #ff6666;
+}
+.diary-list {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 0;
+}
 </style>
 </head>
 <body>
@@ -46,6 +54,7 @@ body {
 						<li><a href="#" th:text="#{app.item1}">item1</a></li>
 						<li><a href="#" th:text="#{app.item2}">item2</a></li>
 						<li><a href="#" th:text="#{app.item3}">item3</a></li>
+						<li><a href="#" id="itemDiaryBtn">警備日誌</a></li>
 					</ul>
 				</div>
 			</div>
@@ -66,7 +75,18 @@ body {
 			<h1 th:text="#{app.about}">Heading1</h1>
 		</div>
 		<div class="well">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+		</div>
+		<div class="page-header">
+			<h1>館長の警備日誌</h1>
+		</div>
+		<div id="jsDiary" class="well">
+			<ul class="diary-list" th:remove="all-but-first">
+				<li th:each="diary: ${diaryList}"
+					th:text="${diary.timestamp} + ' ' + ${diary.comment}">2018/02/02 09:00 今日は寒いにゃ</li>
+				<li>2018/02/01 15:00 カラスがうるさいニャ</li>
+				<li>2018/02/01 09:00 異常ないニャ</li>
+			</ul>
 		</div>
 		<div>
 			<i class="far fa-arrow-alt-circle-down"></i>
@@ -137,10 +157,33 @@ body {
 		</div>
 	</div>
 
+	<div id="modalDiary" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title">警備日誌</h4>
+				</div>
+				<div class="modal-body">
+					<form id="formDiary">
+						<div class="form-group">
+						  <label class="control-label">コメント</label>
+						  <textarea name="diaryComment" class="form-control"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal" th:text="#{btn.cancel}">キャンセル</button>
+					<button id="modalDiarySubmit" type="button" class="btn btn-primary" th:text="#{btn.save}">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="../static/js/jquery-3.2.1.min.js" th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 	<script src="../static/js/fontawesome-all.min.js" th:src="@{/js/fontawesome-all.min.js}"></script>
-	<script>
+	<script th:inline="javascript">
 $(function(){
 	$('#modalGreeting').modal({
 		backdrop: 'static', // static: not close on click background.
@@ -149,6 +192,30 @@ $(function(){
 	});
 	$('#modalGreetingBtn').on('click', function(){
 		$('#modalGreeting').modal('show');
+	});
+	$('#modalDiary').modal({show: false});
+	$('#itemDiaryBtn').on('click', function(){
+		$('#modalDiary').modal('show');
+	});
+	$('#modalDiarySubmit').on('click', function(){
+		var $commentArea = $('#formDiary textarea[name="diaryComment"]');
+		$.ajax({
+			url: /*[[@{/submitDiaryEntry}]]*/"/submitDiaryEntry",
+			type: "POST",
+			headers: {          
+    Accept: "text/plain; charset=utf-8"         
+  }     ,
+			data: {diaryComment: $commentArea.val()},
+			success: function(res){
+				var $dlist = $("#jsDiary ul");
+				$dlist.empty();
+				res.forEach(function(d,i){
+					$("<li>"+d.timestamp+" "+d.comment+"</li>").appendTo($dlist);
+				})
+			}
+		})
+		$commentArea.val('');
+		$('#modalDiary').modal('hide');
 	});
 });
 	</script>
